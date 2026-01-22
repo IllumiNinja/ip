@@ -2,6 +2,15 @@ import java.util.Scanner;
 
 public class Talkative {
     private static final int MAX_TASKS = 100;
+
+    private static void printAddedTask(Task UITask, int count) {
+        System.out.println("____________________________________________________________");
+        System.out.println(" Got it. I've added this task:");
+        System.out.println("   " + UITask);
+        System.out.println(" Now you have " + count + " tasks in the list.");
+        System.out.println("____________________________________________________________");
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Task[] UItasks = new Task[MAX_TASKS];
@@ -23,6 +32,7 @@ public class Talkative {
 
             if (userInput.equals("list")) {
                 System.out.println("____________________________________________________________");
+                System.out.println(" Here are the tasks in your list:");
                 for (int i = 0; i < taskCount; i++) {
                     System.out.println(" " + (i + 1) + ". " + UItasks[i]);
                 }
@@ -54,12 +64,34 @@ public class Talkative {
                 continue;
             }
 
-            UItasks[taskCount] = new Task(userInput);
-            taskCount++;
+            if (userInput.startsWith("todo ")) {
+                String description = userInput.substring(5);
+                UItasks[taskCount++] = new Todo(description);
 
-            System.out.println("____________________________________________________________");
-            System.out.println(" added: " + userInput);
-            System.out.println("____________________________________________________________");
+                printAddedTask(UItasks[taskCount - 1], taskCount);
+                continue;
+            }
+
+            if (userInput.startsWith("deadline ")) {
+                String[] parts = userInput.substring(9).split(" /by ");
+                UItasks[taskCount++] = new Deadline(parts[0], parts[1]);
+
+                printAddedTask(UItasks[taskCount - 1], taskCount);
+                continue;
+            }
+
+            if (userInput.startsWith("event ")) {
+                String[] parts = userInput.substring(6).split(" /from | /to ");
+                UItasks[taskCount++] = new Event(parts[0], parts[1], parts[2]);
+
+                printAddedTask(UItasks[taskCount - 1], taskCount);
+                continue;
+            }
+
+//            System.out.println("____________________________________________________________");
+//            System.out.println(" added: " + userInput);
+//            System.out.println(userInput);
+//            System.out.println("____________________________________________________________");
         }
 
         scanner.close();
