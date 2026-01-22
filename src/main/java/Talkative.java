@@ -12,88 +12,112 @@ public class Talkative {
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Task[] UItasks = new Task[MAX_TASKS];
-        int taskCount = 0;
+        try {
+            Scanner scanner = new Scanner(System.in);
+            Task[] UItasks = new Task[MAX_TASKS];
+            int taskCount = 0;
 
-        System.out.println("____________________________________________________________");
-        System.out.println(" Hello! I'm Talkative");
-        System.out.println(" What can I do for you?");
+            System.out.println("____________________________________________________________");
+            System.out.println(" Hello! I'm Talkative");
+            System.out.println(" What can I do for you?");
 
-        while (true) {
-            String userInput = scanner.nextLine();
+            while (true) {
+                String userInput = scanner.nextLine();
 
-            if (userInput.equals("bye")) {
-                System.out.println("____________________________________________________________");
-                System.out.println(" Bye. Hope to see you again soon!");
-                System.out.println("____________________________________________________________");
-                break;
-            }
-
-            if (userInput.equals("list")) {
-                System.out.println("____________________________________________________________");
-                System.out.println(" Here are the tasks in your list:");
-                for (int i = 0; i < taskCount; i++) {
-                    System.out.println(" " + (i + 1) + ". " + UItasks[i]);
+                if (userInput.equals("bye")) {
+                    System.out.println("____________________________________________________________");
+                    System.out.println(" Bye. Hope to see you again soon!");
+                    System.out.println("____________________________________________________________");
+                    break;
                 }
-                System.out.println("____________________________________________________________");
-                continue;
+
+                if (userInput.equals("list")) {
+                    System.out.println("____________________________________________________________");
+                    System.out.println(" Here are the tasks in your list:");
+                    for (int i = 0; i < taskCount; i++) {
+                        System.out.println(" " + (i + 1) + ". " + UItasks[i]);
+                    }
+                    System.out.println("____________________________________________________________");
+                    continue;
+                }
+
+                if (userInput.startsWith("mark ")) {
+                    String dataCleaning = userInput.substring(5);
+                    int index = Integer.parseInt(dataCleaning) - 1;
+                    UItasks[index].markTaskAsDone();
+
+                    System.out.println("____________________________________________________________");
+                    System.out.println(" Nice! I've marked this task as done:");
+                    System.out.println("   " + UItasks[index]);
+                    System.out.println("____________________________________________________________");
+                    continue;
+                }
+
+                if (userInput.startsWith("unmark ")) {
+                    String dataCleaning = userInput.substring(7);
+                    int index = Integer.parseInt(dataCleaning) - 1;
+                    UItasks[index].unmarkTask();
+
+                    System.out.println("____________________________________________________________");
+                    System.out.println(" OK, I've marked this task as not done yet:");
+                    System.out.println("   " + UItasks[index]);
+                    System.out.println("____________________________________________________________");
+                    continue;
+                }
+
+                if (userInput.equals("todo")) {
+                    throw new TalkativeException("A todo needs a description. Try: todo borrow book");
+                }
+                if (userInput.startsWith("todo ")) {
+                    String description = userInput.substring(5);
+                    if (description.isEmpty()) {
+                        throw new TalkativeException("A todo cannot be empty.");
+                    }
+                    UItasks[taskCount++] = new Todo(description);
+
+                    printAddedTask(UItasks[taskCount - 1], taskCount);
+                    continue;
+                }
+
+                if (userInput.equals("deadline")) {
+                    throw new TalkativeException("A deadline needs /by <time>.");
+                }
+                if (userInput.startsWith("deadline ")) {
+                    if (!userInput.contains(" /by ")) {
+                        throw new TalkativeException("Deadline format: deadline <task> /by <time>");
+                    }
+                    String[] parts = userInput.substring(9).split(" /by ");
+                    UItasks[taskCount++] = new Deadline(parts[0], parts[1]);
+
+                    printAddedTask(UItasks[taskCount - 1], taskCount);
+                    continue;
+                }
+
+                if (userInput.startsWith("event ")) {
+                    if (!userInput.contains(" /from ") || !userInput.contains(" /to ")) {
+                        throw new TalkativeException("Event format: event <task> /from <start> /to <end>");
+                    } else{
+                        String[] parts = userInput.substring(6).split(" /from | /to ");
+                        UItasks[taskCount++] = new Event(parts[0], parts[1], parts[2]);
+
+                        printAddedTask(UItasks[taskCount - 1], taskCount);
+                        continue;
+                    }
+                }
+
+                throw new TalkativeException("I don't understand that command.");
+
+                //            System.out.println("____________________________________________________________");
+                //            System.out.println(" added: " + userInput);
+                //            System.out.println(userInput);
+                //            System.out.println("____________________________________________________________");
             }
 
-            if (userInput.startsWith("mark ")) {
-                String dataCleaning = userInput.substring(5);
-                int index = Integer.parseInt(dataCleaning) - 1;
-                UItasks[index].markTaskAsDone();
-
-                System.out.println("____________________________________________________________");
-                System.out.println(" Nice! I've marked this task as done:");
-                System.out.println("   " + UItasks[index]);
-                System.out.println("____________________________________________________________");
-                continue;
-            }
-
-            if (userInput.startsWith("unmark ")) {
-                String dataCleaning = userInput.substring(7);
-                int index = Integer.parseInt(dataCleaning) - 1;
-                UItasks[index].unmarkTask();
-
-                System.out.println("____________________________________________________________");
-                System.out.println(" OK, I've marked this task as not done yet:");
-                System.out.println("   " + UItasks[index]);
-                System.out.println("____________________________________________________________");
-                continue;
-            }
-
-            if (userInput.startsWith("todo ")) {
-                String description = userInput.substring(5);
-                UItasks[taskCount++] = new Todo(description);
-
-                printAddedTask(UItasks[taskCount - 1], taskCount);
-                continue;
-            }
-
-            if (userInput.startsWith("deadline ")) {
-                String[] parts = userInput.substring(9).split(" /by ");
-                UItasks[taskCount++] = new Deadline(parts[0], parts[1]);
-
-                printAddedTask(UItasks[taskCount - 1], taskCount);
-                continue;
-            }
-
-            if (userInput.startsWith("event ")) {
-                String[] parts = userInput.substring(6).split(" /from | /to ");
-                UItasks[taskCount++] = new Event(parts[0], parts[1], parts[2]);
-
-                printAddedTask(UItasks[taskCount - 1], taskCount);
-                continue;
-            }
-
-//            System.out.println("____________________________________________________________");
-//            System.out.println(" added: " + userInput);
-//            System.out.println(userInput);
-//            System.out.println("____________________________________________________________");
+            scanner.close();
+        } catch (TalkativeException e) {
+            System.out.println("____________________________________________________________");
+            System.out.println(" " + e.getMessage());
+            System.out.println("____________________________________________________________");
         }
-
-        scanner.close();
     }
 }
