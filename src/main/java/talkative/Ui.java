@@ -35,6 +35,18 @@ public class Ui {
         showLine();
     }
 
+    public void showFound(ArrayList<Task> matches) {
+        showLine();
+        System.out.println(" Here are the matching tasks in your list:");
+
+        for (int i = 0; i < matches.size(); i++) {
+            System.out.println(" " + (i + 1) + "." + matches.get(i));
+        }
+
+        showLine();
+    }
+
+
     public void showList(ArrayList<Task> tasks) {
         showLine();
         System.out.println(" Here are the tasks in your list:");
