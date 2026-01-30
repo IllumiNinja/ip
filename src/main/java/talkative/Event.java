@@ -3,6 +3,10 @@ package talkative;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents the commands that are used within the Talkative bot.
+ * Provides methods to readCommand, showLine, showWelcome, showBye, showList.
+ */
 public class Event extends Task {
     protected LocalDate  eventFrom;
     protected LocalDate eventTo;
