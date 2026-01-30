@@ -1,7 +1,5 @@
 package talkative;
 
-import java.util.ArrayList;
-
 /**
  - * Represents the commands that are used within the Talkative bot.
  - * Provides methods to readCommand, showLine, showWelcome, showBye, showList.
@@ -28,15 +26,6 @@ public class Talkative {
                 String userInput = ui.readCommand();
 
                 String commandParser = Parser.getCommandWord(userInput);
-
-                if (userInput.startsWith("find ")) {
-                    String keyword = userInput.substring(5);
-
-                    ArrayList<Task> matches = tasks.find(keyword);
-
-                    ui.showFound(matches);
-                    continue;
-                }
 
                 if (commandParser.equals("bye")) {
                     ui.showBye();
@@ -75,10 +64,10 @@ public class Talkative {
                     continue;
                 }
 
-//                if (commandParser.equals("todo")) {
-//                    throw new TalkativeException("A todo needs a description. Try: todo borrow book");
-//                }
-                if (commandParser.startsWith("todo")) {
+                if (commandParser.equals("todo")) {
+                    throw new TalkativeException("A todo needs a description. Try: todo borrow book");
+                }
+                if (commandParser.startsWith("todo ")) {
                     String description = userInput.substring(5);
                     if (description.isEmpty()) {
                         throw new TalkativeException("A todo cannot be empty.");
@@ -89,10 +78,10 @@ public class Talkative {
                     continue;
                 }
 
-//                if (commandParser.equals("deadline")) {
-//                    throw new TalkativeException("A deadline needs /by <time>.");
-//                }
-                if (commandParser.startsWith("deadline")) {
+                if (commandParser.equals("deadline")) {
+                    throw new TalkativeException("A deadline needs /by <time>.");
+                }
+                if (commandParser.startsWith("deadline ")) {
                     if (!userInput.contains(" /by ")) {
                         throw new TalkativeException("Deadline format: deadline <task> /by <time>");
                     }
@@ -104,7 +93,7 @@ public class Talkative {
                     continue;
                 }
 
-                if (commandParser.startsWith("event")) {
+                if (commandParser.startsWith("event ")) {
                     if (!userInput.contains(" /from ") || !userInput.contains(" /to ")) {
                         throw new TalkativeException("Event format: event <task> /from <start> /to <end>");
                     } else{

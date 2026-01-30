@@ -29,19 +29,6 @@ public class TaskList {
         return tasks.size();
     }
 
-    public ArrayList<Task> find(String keyword) {
-        ArrayList<Task> matches = new ArrayList<>();
-
-        for (Task t : tasks) {
-            if (t.toString().toLowerCase().contains(keyword.toLowerCase())) {
-                matches.add(t);
-            }
-        }
-
-        return matches;
-    }
-
-
     public ArrayList<Task> getAll() {
         return tasks;
     }
