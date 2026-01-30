@@ -1,5 +1,9 @@
 package talkative;
 
+/**
+ - * Represents the commands that are used within the Talkative bot.
+ - * Provides methods to readCommand, showLine, showWelcome, showBye, showList.
+ - */
 public class Talkative {
     private static void printAddedTask(Task UITask, int count) {
         System.out.println("____________________________________________________________");
