@@ -1,0 +1,42 @@
+package talkative;
+
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class Ui {
+
+    private final Scanner scanner;
+
+    public Ui() {
+        scanner = new Scanner(System.in);
+    }
+
+    public String readCommand() {
+        return scanner.nextLine();
+    }
+
+    public void showLine() {
+        System.out.println("____________________________________________________________");
+    }
+
+    public void showWelcome() {
+        showLine();
+        System.out.println(" Hello! I'm Talkative");
+        System.out.println(" What can I do for you?");
+    }
+
+    public void showBye() {
+        showLine();
+        System.out.println(" Bye. Hope to see you again soon!");
+        showLine();
+    }
+
+    public void showList(ArrayList<Task> tasks) {
+        showLine();
+        System.out.println(" Here are the tasks in your list:");
+        for (int i = 0; i < tasks.size(); i++) {
+            System.out.println(" " + (i + 1) + ". " + tasks.get(i));
+        }
+        showLine();
+    }
+}
