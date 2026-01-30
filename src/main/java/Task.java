@@ -8,15 +8,27 @@ public class Task {
     }
 
     public void markTaskAsDone() {
+
         isDone = true;
     }
 
     public void unmarkTask() {
+
         isDone = false;
     }
 
     public String getTaskStatusIcon() {
+
         return isDone ? "X" : " ";
+    }
+
+    /**
+     * Returns the text format to be stored into the text file
+     *
+     * @return Cleaned text format for addition into text file for Task
+     */
+    public String toFileFormat() {
+        return "T | " + (isDone ? "1" : "0") + " | " + description;
     }
 
     @Override
