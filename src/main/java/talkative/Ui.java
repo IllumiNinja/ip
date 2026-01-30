@@ -3,6 +3,10 @@ package talkative;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/**
+ * Represents the commands that are used within the Talkative bot.
+ * Provides methods to readCommand, showLine, showWelcome, showBye, showList.
+ */
 public class Ui {
 
     private final Scanner scanner;

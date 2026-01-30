@@ -3,6 +3,10 @@ package talkative;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/**
+ * The main class for Talkative bot.
+ * Provides the main functionalities.
+ */
 public class Talkative {
 //    private static final int MAX_TASKS = 100;
 
@@ -18,7 +22,6 @@ public class Talkative {
         try {
             Ui ui = new Ui();
             Storage storage = new Storage("./data/memory.txt");
-//            ArrayList<Task> UItasks = storage.load();
             TaskList tasks = new TaskList(storage.load());
 
             ui.showWelcome();
@@ -34,7 +37,6 @@ public class Talkative {
                 }
 
                 if (commandParser.equals("list")) {
-//                    ui.showList(UItasks);
                     ui.showList(tasks.getAll());
                     continue;
                 }

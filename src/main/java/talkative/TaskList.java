@@ -2,6 +2,10 @@ package talkative;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a list of tasks.
+ * Provides methods to add, remove, get, check size and retrieve tasks.
+ */
 public class TaskList {
     private final ArrayList<Task> tasks;
 
