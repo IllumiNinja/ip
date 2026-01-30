@@ -1,8 +1,5 @@
 package talkative;
 
-import java.util.Scanner;
-import java.util.ArrayList;
-
 public class Talkative {
 //    private static final int MAX_TASKS = 100;
 
