@@ -17,7 +17,9 @@ public class Talkative {
             Scanner scanner = new Scanner(System.in);
 //            Task[] UItasks = new Task[MAX_TASKS];
 //            int taskCount = 0;
-            ArrayList<Task> UItasks = new ArrayList<>();
+//            ArrayList<Task> UItasks = new ArrayList<>();
+            Storage storage = new Storage("./data/memory.txt");
+            ArrayList<Task> UItasks = storage.load();
 
             System.out.println("____________________________________________________________");
             System.out.println(" Hello! I'm Talkative");
@@ -47,6 +49,7 @@ public class Talkative {
                     String dataCleaning = userInput.substring(5);
                     int index = Integer.parseInt(dataCleaning) - 1;
                     UItasks.get(index).markTaskAsDone();
+                    storage.save(UItasks);
 
                     System.out.println("____________________________________________________________");
                     System.out.println(" Nice! I've marked this task as done:");
@@ -59,6 +62,7 @@ public class Talkative {
                     String dataCleaning = userInput.substring(7);
                     int index = Integer.parseInt(dataCleaning) - 1;
                     UItasks.get(index).unmarkTask();
+                    storage.save(UItasks);
 
                     System.out.println("____________________________________________________________");
                     System.out.println(" OK, I've marked this task as not done yet:");
@@ -77,6 +81,7 @@ public class Talkative {
                     }
 //                    UItasks[taskCount++] = new Todo(description);
                     UItasks.add(new Todo(description));
+                    storage.save(UItasks);
 //                    printAddedTask(UItasks[taskCount - 1], taskCount);
                     printAddedTask(UItasks.get(UItasks.size() - 1), UItasks.size());
                     continue;
@@ -92,6 +97,7 @@ public class Talkative {
                     String[] parts = userInput.substring(9).split(" /by ");
 //                    UItasks[taskCount++] = new Deadline(parts[0], parts[1]);
                     UItasks.add(new Deadline(parts[0], parts[1]));
+                    storage.save(UItasks);
 
 //                    printAddedTask(UItasks[taskCount - 1], taskCount);
                     printAddedTask(UItasks.get(UItasks.size() - 1), UItasks.size());
@@ -105,6 +111,7 @@ public class Talkative {
                         String[] parts = userInput.substring(6).split(" /from | /to ");
 //                        UItasks[taskCount++] = new Event(parts[0], parts[1], parts[2]);
                         UItasks.add(new Event(parts[0], parts[1], parts[2]));
+                        storage.save(UItasks);
 
 //                        printAddedTask(UItasks[taskCount - 1], taskCount);
                         printAddedTask(UItasks.get(UItasks.size() - 1), UItasks.size());
@@ -127,6 +134,7 @@ public class Talkative {
                     }
 
                     Task removed = UItasks.remove(index);
+                    storage.save(UItasks);
 
                     System.out.println("____________________________________________________________");
                     System.out.println(" Noted. I've removed this task:");
@@ -137,6 +145,7 @@ public class Talkative {
                 }
 
                 UItasks.add(new Todo(userInput));
+                storage.save(UItasks);
                 printAddedTask(UItasks.get(UItasks.size() - 1), UItasks.size());
 
 //                throw new TalkativeException("I don't understand that command.");
