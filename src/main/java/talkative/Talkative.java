@@ -1,8 +1,10 @@
+package talkative;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Talkative {
-    private static final int MAX_TASKS = 100;
+//    private static final int MAX_TASKS = 100;
 
     private static void printAddedTask(Task UITask, int count) {
         System.out.println("____________________________________________________________");
@@ -15,9 +17,6 @@ public class Talkative {
     public static void main(String[] args) {
         try {
             Scanner scanner = new Scanner(System.in);
-//            Task[] UItasks = new Task[MAX_TASKS];
-//            int taskCount = 0;
-//            ArrayList<Task> UItasks = new ArrayList<>();
             Storage storage = new Storage("./data/memory.txt");
             ArrayList<Task> UItasks = storage.load();
 
