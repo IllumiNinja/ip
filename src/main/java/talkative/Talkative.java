@@ -1,8 +1,6 @@
 package talkative;
 
 public class Talkative {
-//    private static final int MAX_TASKS = 100;
-
     private static void printAddedTask(Task UITask, int count) {
         System.out.println("____________________________________________________________");
         System.out.println(" Got it. I've added this task:");
