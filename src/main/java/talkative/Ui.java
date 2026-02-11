@@ -1,7 +1,7 @@
 package talkative;
 
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Represents the commands that are used within the Talkative bot.
@@ -23,18 +23,29 @@ public class Ui {
         System.out.println("____________________________________________________________");
     }
 
+    /**
+     * Output static welcome messages
+     */
     public void showWelcome() {
         showLine();
         System.out.println(" Hello! I'm Talkative");
         System.out.println(" What can I do for you?");
     }
 
+    /**
+     * Output static end messages
+     */
     public void showBye() {
         showLine();
         System.out.println(" Bye. Hope to see you again soon!");
         showLine();
     }
 
+    /**
+     * Output matching tasks based on searched inputs
+     *
+     * @param matches that matched the searched results
+     */
     public void showFound(ArrayList<Task> matches) {
         showLine();
         System.out.println(" Here are the matching tasks in your list:");
@@ -46,7 +57,11 @@ public class Ui {
         showLine();
     }
 
-
+    /**
+     * Output tasks in task list
+     *
+     * @param tasks that are in the task lists
+     */
     public void showList(ArrayList<Task> tasks) {
         showLine();
         System.out.println(" Here are the tasks in your list:");

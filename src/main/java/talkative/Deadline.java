@@ -3,9 +3,19 @@ package talkative;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents the commands that are used within the Talkative Bot and within the Deadline Tasks.
+ */
 public class Deadline extends Task {
     protected LocalDate deadlineBy;
 
+    /**
+     * Creates a deadline task.
+     *
+     * @param description Task description.
+     * @param deadlineBy Deadline of the task.
+     * @throws TalkativeException If date format is wrong
+     */
     public Deadline(String description, String deadlineBy) throws TalkativeException {
         super(description);
 

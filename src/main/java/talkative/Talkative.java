@@ -3,14 +3,14 @@ package talkative;
 import java.util.ArrayList;
 
 /**
- - * Represents the commands that are used within the Talkative bot.
- - * Provides methods to readCommand, showLine, showWelcome, showBye, showList.
- - */
+ * Represents the commands that are used within the Talkative bot.
+ * Provides methods to readCommand, showLine, showWelcome, showBye, showList.
+ */
 public class Talkative {
-    private static void printAddedTask(Task UITask, int count) {
+    private static void printAddedTask(Task uiTask, int count) {
         System.out.println("____________________________________________________________");
         System.out.println(" Got it. I've added this task:");
-        System.out.println("   " + UITask);
+        System.out.println("   " + uiTask);
         System.out.println(" Now you have " + count + " tasks in the list.");
         System.out.println("____________________________________________________________");
     }
@@ -19,7 +19,6 @@ public class Talkative {
         try {
             Ui ui = new Ui();
             Storage storage = new Storage("./data/memory.txt");
-//            ArrayList<Task> UItasks = storage.load();
             TaskList tasks = new TaskList(storage.load());
 
             ui.showWelcome();
@@ -45,7 +44,6 @@ public class Talkative {
 
 
                 if (commandParser.equals("list")) {
-//                    ui.showList(UItasks);
                     ui.showList(tasks.getAll());
                     continue;
                 }
@@ -76,9 +74,6 @@ public class Talkative {
                     continue;
                 }
 
-//                if (commandParser.equals("todo")) {
-//                    throw new TalkativeException("A todo needs a description. Try: todo borrow book");
-//                }
                 if (commandParser.startsWith("todo ")) {
                     String description = userInput.substring(5);
                     if (description.isEmpty()) {
@@ -90,9 +85,6 @@ public class Talkative {
                     continue;
                 }
 
-//                if (commandParser.equals("deadline")) {
-//                    throw new TalkativeException("A deadline needs /by <time>.");
-//                }
                 if (commandParser.startsWith("deadline")) {
                     if (!userInput.contains(" /by ")) {
                         throw new TalkativeException("Deadline format: deadline <task> /by <time>");
@@ -108,7 +100,7 @@ public class Talkative {
                 if (commandParser.startsWith("event")) {
                     if (!userInput.contains(" /from ") || !userInput.contains(" /to ")) {
                         throw new TalkativeException("Event format: event <task> /from <start> /to <end>");
-                    } else{
+                    } else {
                         String[] parts = userInput.substring(6).split(" /from | /to ");
                         tasks.add(new Event(parts[0], parts[1], parts[2]));
                         storage.save(tasks.getAll());

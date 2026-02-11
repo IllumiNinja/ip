@@ -1,9 +1,18 @@
 package talkative;
 
+/**
+ * Represents the commands that are used within the Talkative bot for Task.
+ * Provides methods to markTaskAsDone, unmarkTaskAsDone, unmarkTask, getTaskStatusIcon.
+ */
 public class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     * Creates a Task task.
+     *
+     * @param description Task description.
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;

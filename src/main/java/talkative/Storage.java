@@ -19,16 +19,18 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * Returns the saved task from user's previous action
+     *
+     * @return the formatted output.
+     */
     public ArrayList<Task> load() {
         ArrayList<Task> tasks = new ArrayList<>();
         File file = new File(filePath);
 
         try {
-
-            // create folder if missing
             file.getParentFile().mkdirs();
 
-            // create file if missing
             if (!file.exists()) {
                 file.createNewFile();
                 return tasks;
@@ -83,6 +85,9 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Saves the user input into the file for memory of history
+     */
     public void save(ArrayList<Task> tasks) {
 
         try {

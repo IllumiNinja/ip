@@ -8,9 +8,17 @@ import java.time.format.DateTimeFormatter;
  * Provides methods to readCommand, showLine, showWelcome, showBye, showList.
  */
 public class Event extends Task {
-    protected LocalDate  eventFrom;
+    protected LocalDate eventFrom;
     protected LocalDate eventTo;
 
+    /**
+     * Creates an event task.
+     *
+     * @param description Task description.
+     * @param eventFrom Start date of the task.
+     * @param eventTo Deadline of the task.
+     * @throws TalkativeException If date format is incorrect
+     */
     public Event(String description, String eventFrom, String eventTo) throws TalkativeException {
         super(description);
 
