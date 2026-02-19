@@ -117,4 +117,8 @@ public class Ui {
                 + "  " + task + "\n"
                 + "Now you have " + size + " tasks in the list.";
     }
+
+    public String showUnknownCommand() {
+        return "I'm sorry, I don't understand that command.";
+    }
 }
