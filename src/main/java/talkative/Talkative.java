@@ -10,6 +10,11 @@ public class Talkative {
     public static void main(String[] args) {
     }
 
+    public String getWelcomeMessage() {
+        Ui ui = new Ui();
+        return ui.showWelcome();
+    }
+
     /**
      * Generates a response for the user's chat message.
      *

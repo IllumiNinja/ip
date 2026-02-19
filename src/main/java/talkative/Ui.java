@@ -24,6 +24,13 @@ public class Ui {
     }
 
     /**
+     * Output static welcome messages
+     */
+    public String showWelcome() {
+        return "Hello! I'm Talkative\nWhat can I do for you?";
+    }
+
+    /**
      * Output static end messages
      */
     public String showBye() {
