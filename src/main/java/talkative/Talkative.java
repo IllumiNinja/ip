@@ -28,6 +28,8 @@ public class Talkative {
             TaskList tasks = new TaskList(storage.load());
 
             String commandParser = Parser.getCommandWord(input);
+            assert commandParser != null && !commandParser.isEmpty()
+                    : "Parsed command should not be null or empty";
             if (commandParser.equals("bye")) {
                 return ui.showBye();
             } else if (input.startsWith("find")) {
@@ -41,6 +43,9 @@ public class Talkative {
             } else if (commandParser.startsWith("mark")) {
                 String dataCleaning = input.substring(5);
                 int index = Integer.parseInt(dataCleaning) - 1;
+                assert index >= 0 && index < tasks.size()
+                        : "Index out of bounds: " + index;
+
                 Task task = tasks.get(index);
                 task.markTaskAsDone();
                 storage.save(tasks.getAll());
@@ -49,6 +54,8 @@ public class Talkative {
             } else if (commandParser.startsWith("unmark")) {
                 String dataCleaning = input.substring(7);
                 int index = Integer.parseInt(dataCleaning) - 1;
+                assert index >= 0 && index < tasks.size()
+                        : "Index out of bounds: " + index;
 
                 Task task = tasks.get(index);
                 task.unmarkTask();
@@ -71,6 +78,8 @@ public class Talkative {
                     throw new TalkativeException("Deadline format: deadline <task> /by <time>");
                 }
                 String[] parts = input.substring(9).split(" /by ");
+                assert parts.length == 2
+                        : "Deadline must have description and /by time";
                 Task task = new Deadline(parts[0], parts[1]);
                 tasks.add(task);
                 storage.save(tasks.getAll());
@@ -81,6 +90,9 @@ public class Talkative {
                     throw new TalkativeException("Event format: event <task> /from <start> /to <end>");
                 }
                 String[] parts = input.substring(6).split(" /from | /to ");
+                assert parts.length == 3
+                        : "Event must have description, start, and end";
+
                 Task task = new Event(parts[0], parts[1], parts[2]);
                 tasks.add(task);
                 storage.save(tasks.getAll());
@@ -91,6 +103,8 @@ public class Talkative {
                 int index;
                 try {
                     index = Integer.parseInt(data) - 1;
+                    assert index >= 0 && index < tasks.size()
+                            : "Index out of bounds: " + index;
                 } catch (NumberFormatException e) {
                     throw new TalkativeException("Delete command requires a number.");
                 }

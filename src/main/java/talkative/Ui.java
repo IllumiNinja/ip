@@ -117,4 +117,13 @@ public class Ui {
                 + "  " + task + "\n"
                 + "Now you have " + size + " tasks in the list.";
     }
+
+    /**
+     * Returns a message indicating that the command is not recognized.
+     *
+     * @return A formatted message for unknown commands.
+     */
+    public String showUnknownCommand() {
+        return "I'm sorry, I don't understand that command.";
+    }
 }

@@ -47,11 +47,11 @@ test {
 }
 
 application {
-    mainClass.set("talkative.Talkative")
+    mainClass.set("talkative.Launcher")
 }
 
 shadowJar {
-    archiveBaseName = "Talkative"
+    archiveBaseName = "Talkative-all"
     archiveClassifier = null
 }
 
