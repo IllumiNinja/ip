@@ -5,6 +5,8 @@ package talkative;
  */
 public class Parser {
     public static String getCommandWord(String input) {
+        assert input != null : "Input should not be null";
+        assert !input.trim().isEmpty() : "Input should not be empty";
         return input.split(" ")[0];
     }
 }

@@ -94,6 +94,7 @@ public class Storage {
             BufferedWriter bw = new BufferedWriter(new FileWriter(filePath));
 
             for (Task t : tasks) {
+                assert tasks != null : "Task list should not be null when saving";
                 bw.write(t.toFileFormat());
                 bw.newLine();
             }
