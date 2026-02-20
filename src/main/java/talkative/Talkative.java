@@ -41,6 +41,7 @@ public class Talkative {
                 case "deadline" -> handleDeadline(input, tasks, storage, ui);
                 case "event" -> handleEvent(input, tasks, storage, ui);
                 case "delete" -> handleDelete(input, tasks, storage, ui);
+                case "dowithin" -> handleDoWithin(input, tasks, storage, ui);
                 default -> ui.showUnknownCommand();
             };
 
@@ -133,6 +134,24 @@ public class Talkative {
         storage.save(tasks.getAll());
 
         return ui.showDeletedTask(removed, tasks.size());
+    }
+
+    private String handleDoWithin(String input, TaskList tasks, Storage storage, Ui ui)
+            throws TalkativeException {
+
+        if (!input.contains(" /from ") || !input.contains(" /to ")) {
+            throw new TalkativeException(
+                    "Format: dowithin <task> /from <start> /to <end>");
+        }
+
+        String[] parts = input.substring(9).split(" /from | /to ");
+        assert parts.length == 3 : "DoWithin must have description, from, and to";
+
+        Task task = new DoWithin(parts[0], parts[1], parts[2]);
+        tasks.add(task);
+        storage.save(tasks.getAll());
+
+        return ui.showAddedTask(task, tasks.size());
     }
 
     private int parseIndex(String input, TaskList tasks) throws TalkativeException {

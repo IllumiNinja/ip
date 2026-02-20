@@ -9,3 +9,5 @@ T | 0 | git status
 T | 0 | Score A
 T | 0 | abc
 T | 0 | something
+T | 0 | abc
+W | 0 | collect certificate | Jan 15 | Jan 25
