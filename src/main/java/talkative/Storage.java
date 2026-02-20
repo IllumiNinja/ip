@@ -60,6 +60,9 @@ public class Storage {
                     case "E":
                         task = new Event(desc, parts[3], parts[4]);
                         break;
+                    case "W":
+                        task = new DoWithin(desc, parts[3], parts[4]);
+                        break;
                     default:
                         continue; // corrupted line
                     }
@@ -93,8 +96,8 @@ public class Storage {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(filePath));
 
+            assert tasks != null : "Task list should not be null when saving";
             for (Task t : tasks) {
-                assert tasks != null : "Task list should not be null when saving";
                 bw.write(t.toFileFormat());
                 bw.newLine();
             }
