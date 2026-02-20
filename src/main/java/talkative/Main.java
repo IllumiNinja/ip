@@ -29,7 +29,10 @@ public class Main extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
+
             stage.setScene(scene);
+            stage.setTitle("Talkative Bot");
+
             fxmlLoader.<MainWindow>getController().setDuke(talkative); // inject the Talkative instance
             stage.show();
         } catch (IOException e) {
