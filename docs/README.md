@@ -88,7 +88,7 @@ dowithin collect certificate /from 2026-02-15 /to 2026-02-25
 ```
 ---
 
-### 📋 Listing all tasks: `list`
+### Listing all tasks: `list`
 
 Displays all tasks.
 
@@ -98,7 +98,7 @@ list
 ```
 ---
 
-### 🔍 Finding tasks: `find`
+### Finding tasks: `find`
 
 Searches for tasks containing a keyword.
 
