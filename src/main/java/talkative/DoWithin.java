@@ -17,11 +17,22 @@ public class DoWithin extends Task {
         this.to = to;
     }
 
+    /**
+     * Returns a string representation of the DoWithin task for display.
+     *
+     * @return A formatted string containing the task type, status,
+     *         description, and time range.
+     */
     @Override
     public String toString() {
         return "[W]" + super.toString() + " (from: " + from + " to: " + to + ")";
     }
 
+    /**
+     * Converts the DoWithin task into a format suitable for saving to a file.
+     *
+     * @return A string representation of the task in storage format.
+     */
     @Override
     public String toFileFormat() {
         return "W | " + (isDone ? "1" : "0") + " | "

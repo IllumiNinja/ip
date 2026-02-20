@@ -31,9 +31,9 @@ public class Event extends Task {
     }
 
     /**
-     * Returns the text format to be stored into the text file
+     * Converts the Event task into a format suitable for saving to a file.
      *
-     * @return Cleaned text format for addition into text file for Event Task
+     * @return A string representation of the event in storage format.
      */
     @Override
     public String toFileFormat() {
@@ -47,6 +47,12 @@ public class Event extends Task {
                 + eventTo.toString();
     }
 
+    /**
+     * Returns a string representation of the Event task for display.
+     *
+     * @return A formatted string containing the task type, status,
+     *         description, and formatted date range.
+     */
     @Override
     public String toString() {
         return "[E]"

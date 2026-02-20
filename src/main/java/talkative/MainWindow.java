@@ -25,11 +25,10 @@ public class MainWindow extends AnchorPane {
     private Talkative talkative = new Talkative();
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaTalkative.png"));
 
     /**
      * Initializes the main window of the application.
-     * <p>
      * This method is automatically called by JavaFX after the FXML components
      * have been loaded. It binds the scroll pane to always scroll to the bottom
      * as new dialog boxes are added, and displays the initial welcome message
@@ -55,6 +54,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
+
         String response = talkative.getResponse(input);
         dialogContainer.getChildren().addAll(
             DialogBox.getUserDialog(input, userImage),

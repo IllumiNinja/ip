@@ -12,9 +12,17 @@ import javafx.stage.Stage;
  * A GUI for Talkative using FXML.
  */
 public class Main extends Application {
-
+    /**
+     * The Talkative instance that handles user input and generates responses.
+     */
     private Talkative talkative = new Talkative();
 
+    /**
+     * Starts the JavaFX application by loading the main window layout
+     * and displaying it on the given stage.
+     *
+     * @param stage The primary stage for this application.
+     */
     @Override
     public void start(Stage stage) {
         try {
